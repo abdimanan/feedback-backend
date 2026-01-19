@@ -1,0 +1,812 @@
+{
+	"info": {
+		"_postman_id": "feedback-backend-api",
+		"name": "Feedback Backend API",
+		"description": "API collection for Feedback Backend - Client and Project management, Feedback Link generation, and Feedback submission",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "List All Clients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/clients?search=&per_page=15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "",
+									"description": "Search by name, email, or description",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get a paginated list of all clients. Supports search and pagination."
+					},
+					"response": []
+				},
+				{
+					"name": "Search Clients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/clients?search=example&per_page=15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "example",
+									"description": "Search by name, email, or description"
+								},
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page"
+								}
+							]
+						},
+						"description": "Search clients by name, email, or description."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/clients/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						},
+						"description": "Get a specific client by ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Client",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Acme Corporation\",\n    \"email\": \"contact@acme.com\",\n    \"description\": \"A leading technology company\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/clients",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients"
+							]
+						},
+						"description": "Create a new client."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Client",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Acme Corporation Updated\",\n    \"email\": \"contact@acme.com\",\n    \"description\": \"Updated description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/clients/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						},
+						"description": "Update a client (full update)."
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Update Client",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Acme Corporation Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/clients/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						},
+						"description": "Partially update a client (only send fields to update)."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Client",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/clients/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"clients",
+								"1"
+							]
+						},
+						"description": "Delete a client by ID."
+					},
+					"response": []
+				}
+			],
+			"description": "Client management endpoints"
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "List All Projects",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/projects?search=&client_id=&per_page=15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "",
+									"description": "Search by project name, description, or client name/email",
+									"disabled": true
+								},
+								{
+									"key": "client_id",
+									"value": "",
+									"description": "Filter by client ID",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get a paginated list of all projects. Supports search, filtering by client, and pagination."
+					},
+					"response": []
+				},
+				{
+					"name": "Search Projects",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/projects?search=website&per_page=15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "website",
+									"description": "Search by project name, description, or client name/email"
+								},
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page"
+								}
+							]
+						},
+						"description": "Search projects by name, description, or client information."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Projects by Client",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/projects?client_id=1&per_page=15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "1",
+									"description": "Filter by client ID"
+								},
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page"
+								}
+							]
+						},
+						"description": "Get all projects for a specific client."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Project by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/projects/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"1"
+							]
+						},
+						"description": "Get a specific project by ID (includes client relationship)."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client_id\": 1,\n    \"name\": \"Website Redesign\",\n    \"description\": \"Complete redesign of the company website\",\n    \"start_date\": \"2024-01-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/projects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"projects"
+							]
+						},
+						"description": "Create a new project for a client."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Project",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"client_id\": 1,\n    \"name\": \"Website Redesign Updated\",\n    \"description\": \"Updated project description\",\n    \"start_date\": \"2024-01-20\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/projects/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"1"
+							]
+						},
+						"description": "Update a project (full update)."
+					},
+					"response": []
+				},
+				{
+					"name": "Partial Update Project",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Website Redesign Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/projects/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"1"
+							]
+						},
+						"description": "Partially update a project (only send fields to update)."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Project",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/projects/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"1"
+							]
+						},
+						"description": "Delete a project by ID."
+					},
+					"response": []
+				},
+				{
+					"name": "Generate Feedback Link",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/projects/1/feedback-link",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"1",
+								"feedback-link"
+							]
+						},
+						"description": "Generate a unique feedback link token for a project. The token expires in 7 days. Returns the public API URL for submitting feedback."
+					},
+					"response": []
+				}
+			],
+			"description": "Project management endpoints including feedback link generation"
+		},
+		{
+			"name": "Public",
+			"item": [
+				{
+					"name": "Submit Feedback",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"statement_1_rating\": 5,\n    \"statement_2_rating\": 4,\n    \"statement_3_rating\": 5,\n    \"likes_text\": \"Great service and communication!\",\n    \"dislikes_text\": null,\n    \"overall_rating\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/public/feedback/muqpJQV7OoiYsr0RAxguzlYAwJEyo3TRn8VCEZqHfyZeiTArme2zWOZmLEQUOTny",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"public",
+								"feedback",
+								"muqpJQV7OoiYsr0RAxguzlYAwJEyo3TRn8VCEZqHfyZeiTArme2zWOZmLEQUOTny"
+							]
+						},
+						"description": "Submit feedback using a feedback link token. No authentication required. The token must be valid, not expired, and not already used. All ratings must be between 1-5."
+					},
+					"response": []
+				}
+			],
+			"description": "Public endpoints (no authentication required)"
+		},
+		{
+			"name": "Feedbacks",
+			"item": [
+				{
+					"name": "List All Feedbacks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/feedbacks?client_id=&project_id=&per_page=15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"feedbacks"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "",
+									"description": "Filter by client ID",
+									"disabled": true
+								},
+								{
+									"key": "project_id",
+									"value": "",
+									"description": "Filter by project ID",
+									"disabled": true
+								},
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Get a paginated list of all feedback. Supports filtering by client_id and project_id."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Feedbacks by Client",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/feedbacks?client_id=1&per_page=15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"feedbacks"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "1",
+									"description": "Filter by client ID"
+								},
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page"
+								}
+							]
+						},
+						"description": "Get all feedback for a specific client."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Feedbacks by Project",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/feedbacks?project_id=1&per_page=15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"feedbacks"
+							],
+							"query": [
+								{
+									"key": "project_id",
+									"value": "1",
+									"description": "Filter by project ID"
+								},
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page"
+								}
+							]
+						},
+						"description": "Get all feedback for a specific project."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter Feedbacks by Client and Project",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/feedbacks?client_id=1&project_id=1&per_page=15",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"feedbacks"
+							],
+							"query": [
+								{
+									"key": "client_id",
+									"value": "1",
+									"description": "Filter by client ID"
+								},
+								{
+									"key": "project_id",
+									"value": "1",
+									"description": "Filter by project ID"
+								},
+								{
+									"key": "per_page",
+									"value": "15",
+									"description": "Number of items per page"
+								}
+							]
+						},
+						"description": "Get feedback filtered by both client and project."
+					},
+					"response": []
+				}
+			],
+			"description": "Feedback management endpoints (internal use)"
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
