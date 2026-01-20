@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\FeedbackController;
 use App\Http\Controllers\Api\FeedbackLinkController;
@@ -8,20 +9,30 @@ use App\Http\Controllers\Api\PublicFeedbackController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// Public authentication routes
+Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-Route::apiResource('clients', ClientController::class);
-Route::apiResource('projects', ProjectController::class);
+// Admin-only registration route
+Route::post('/register', [AuthController::class, 'register'])
+    ->middleware(['auth:sanctum', 'role:admin'])
+    ->name('register');
 
-Route::post('/projects/{project}/feedback-link', [FeedbackLinkController::class, 'store'])
-    ->name('projects.feedback-link.store');
+// Protected routes (require authentication)
+Route::middleware('auth:sanctum')->group(function (): void {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    })->name('user');
+
+    Route::apiResource('clients', ClientController::class);
+    Route::apiResource('projects', ProjectController::class);
+
+    Route::post('/projects/{project}/feedback-link', [FeedbackLinkController::class, 'store'])
+        ->name('projects.feedback-link.store');
+
+    Route::get('/feedbacks', [FeedbackController::class, 'index'])
+        ->name('feedbacks.index');
+});
 
 // Public feedback submission (no authentication required)
 Route::post('/public/feedback/{token}', [PublicFeedbackController::class, 'store'])
     ->name('public.feedback.store');
-
-// Internal feedback management (requires authentication later)
-Route::get('/feedbacks', [FeedbackController::class, 'index'])
-    ->name('feedbacks.index');
