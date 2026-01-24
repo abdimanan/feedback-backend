@@ -8,6 +8,7 @@ use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -64,6 +65,18 @@ class AuthController extends Controller
                 ],
                 'token' => $token,
             ],
+        ]);
+    }
+
+    /**
+     * Logout the authenticated user by revoking the current token.
+     */
+    public function logout(Request $request): JsonResponse
+    {
+        $request->user()?->currentAccessToken()?->delete();
+
+        return response()->json([
+            'message' => 'Logout successful.',
         ]);
     }
 }
