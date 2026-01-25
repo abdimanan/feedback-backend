@@ -19,6 +19,8 @@ Route::post('/register', [AuthController::class, 'register'])
 
 // Protected routes (require authentication)
 Route::middleware('auth:sanctum')->group(function (): void {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
     Route::get('/user', function (Request $request) {
         return $request->user();
     })->name('user');
