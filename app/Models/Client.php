@@ -28,4 +28,12 @@ class Client extends Model
     {
         return $this->hasMany(Project::class);
     }
+
+    /**
+     * Get the email logs for the client.
+     */
+    public function emailLogs(): HasMany
+    {
+        return $this->hasMany(EmailLog::class);
+    }
 }

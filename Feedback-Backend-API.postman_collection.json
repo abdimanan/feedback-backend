@@ -841,9 +841,41 @@
 						"description": "Generate a unique feedback link token for a project. The token expires in 7 days. Returns the public API URL for submitting feedback."
 					},
 					"response": []
+				},
+				{
+					"name": "Send Feedback Email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/projects/1/send-feedback-email",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"projects",
+								"1",
+								"send-feedback-email"
+							]
+						},
+						"description": "Send a feedback request email to the project's client. Requires project_manager role. Creates a feedback link and email log, then sends the email via SMTP. Returns EmailLog data with tracking information."
+					},
+					"response": []
 				}
 			],
-			"description": "Project management endpoints including feedback link generation"
+			"description": "Project management endpoints including feedback link generation and email sending"
 		},
 		{
 			"name": "Public",
@@ -886,6 +918,27 @@
 							]
 						},
 						"description": "Submit feedback using a feedback link token. No authentication required. The token must be valid, not expired, and not already used. All ratings must be between 1-5."
+					},
+					"response": []
+				},
+				{
+					"name": "Email Open Tracking",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/public/email-open/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"public",
+								"email-open",
+								"1"
+							]
+						},
+						"description": "Track email opens via a 1x1 transparent GIF pixel. No authentication required. This endpoint is automatically called when the email is opened (embedded in the email HTML). Sets opened_at timestamp on first open. Returns a transparent GIF image."
 					},
 					"response": []
 				}

@@ -59,4 +59,12 @@ class Project extends Model
     {
         return $this->hasMany(FeedbackLink::class);
     }
+
+    /**
+     * Get the email logs for the project.
+     */
+    public function emailLogs(): HasMany
+    {
+        return $this->hasMany(EmailLog::class);
+    }
 }
