@@ -7,6 +7,7 @@ use App\Models\EmailLog;
 use App\Models\FeedbackLink;
 use App\Models\Project;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -40,11 +41,20 @@ class ProjectFeedbackEmailService
             'sent_at' => Carbon::createFromTimestamp(0),
         ]);
 
-        Mail::mailer('smtp')->send(
-            new ProjectFeedbackMail($client, $project, $feedbackLink, $emailLog)
-        );
-
-        $emailLog->update(['sent_at' => now()]);
+        try {
+            Mail::mailer('smtp')->send(
+                new ProjectFeedbackMail($client, $project, $feedbackLink, $emailLog)
+            );
+            $emailLog->update(['sent_at' => now()]);
+        } catch (\Exception $e) {
+            Log::error('Failed to send project feedback email', [
+                'email_log_id' => $emailLog->id,
+                'to_email' => $client->email,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+            throw $e;
+        }
 
         return $emailLog->fresh();
     }
