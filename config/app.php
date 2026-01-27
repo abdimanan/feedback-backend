@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000'),
+    'frontend_url' => env('FRONTEND_URL', 'https://feedback-media.vercel.app'),
 
     /*
     |--------------------------------------------------------------------------
