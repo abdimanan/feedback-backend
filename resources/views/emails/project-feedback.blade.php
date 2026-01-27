@@ -29,7 +29,7 @@
                             <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                                 <tr>
                                     <td style="border-radius:6px;background-color:#2563eb;">
-                                        <a href="{{ url('/feedback/' . $feedbackLink->token) }}" target="_blank" rel="noopener" style="display:inline-block;padding:14px 28px;font-size:16px;font-weight:600;color:#ffffff;text-decoration:none;">Give feedback</a>
+                                        <a href="{{ config('app.frontend_url') . '/feedback/' . $feedbackLink->token }}" target="_blank" rel="noopener" style="display:inline-block;padding:14px 28px;font-size:16px;font-weight:600;color:#ffffff;text-decoration:none;">Give feedback</a>
                                     </td>
                                 </tr>
                             </table>

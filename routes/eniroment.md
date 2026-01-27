@@ -1,8 +1,8 @@
 APP_NAME=Laravel
 APP_ENV=local
-APP_KEY=base64:2D/XrL++atO8UfLgZ6HH+UjTxL9MDGkr+Hn/4iIiNTg=
+APP_KEY=base64:qugn4TLZD+lu9N+MHkwKZTl1H73taIrCgPwaBemxzoA=
 APP_DEBUG=true
-APP_URL=http://localhost:8000
+APP_URL=http://feedback-backend.test
 
 APP_LOCALE=en
 APP_FALLBACK_LOCALE=en
@@ -47,12 +47,12 @@ REDIS_HOST=127.0.0.1
 REDIS_PASSWORD=null
 REDIS_PORT=6379
 
-MAIL_MAILER=SMTP
-MAIL_SCHEME=null
+MAIL_MAILER=smtp
 MAIL_HOST=sandbox.smtp.mailtrap.io
 MAIL_PORT=2525
-MAIL_USERNAME=d85bd2a427a167
-MAIL_PASSWORD=5daf099e1aaf4a
+MAIL_USERNAME=b6ed90c8efd5b4
+MAIL_PASSWORD=6b69cc173b8f92
+MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS="hello@example.com"
 MAIL_FROM_NAME="${APP_NAME}"
 
@@ -63,3 +63,9 @@ AWS_BUCKET=
 AWS_USE_PATH_STYLE_ENDPOINT=false
 
 VITE_APP_NAME="${APP_NAME}"
+
+# Frontend URL
+FRONTEND_URL=http://localhost:3000
+
+# Sanctum Stateful Domains (for SPA authentication)
+SANCTUM_STATEFUL_DOMAINS=localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1,feedback-backend.test,feedback-frontend-silk.vercel.app

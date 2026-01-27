@@ -26,7 +26,7 @@ it('renders mailable with client name, project name, description, feedback link,
         ->toContain($emailLog->client->name)
         ->toContain('Test Project')
         ->toContain('Test project description')
-        ->toContain(url('/feedback/'.$emailLog->feedbackLink->token))
+        ->toContain(config('app.frontend_url').'/feedback/'.$emailLog->feedbackLink->token)
         ->toContain($emailLog->feedbackLink->expires_at->format('F j, Y \a\t g:i A'))
         ->toContain(route('public.email.open', $emailLog, true));
 });

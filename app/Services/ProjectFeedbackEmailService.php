@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
 class ProjectFeedbackEmailService
 {
     /**
-     * Load project and client, create FeedbackLink and EmailLog, send ProjectFeedbackMail via SMTP,
+     * Load project and client, create FeedbackLink and EmailLog, send ProjectFeedbackMail,
      * set sent_at only after successful send. Throws on failure.
      */
     public function send(int $projectId): EmailLog
@@ -42,7 +42,7 @@ class ProjectFeedbackEmailService
         ]);
 
         try {
-            Mail::mailer('smtp')->send(
+            Mail::send(
                 new ProjectFeedbackMail($client, $project, $feedbackLink, $emailLog)
             );
             $emailLog->update(['sent_at' => now()]);
@@ -67,7 +67,7 @@ class ProjectFeedbackEmailService
     {
         $emailLog->load(['feedbackLink', 'project', 'client']);
 
-        Mail::mailer('smtp')->send(
+        Mail::send(
             new ProjectFeedbackMail(
                 $emailLog->client,
                 $emailLog->project,

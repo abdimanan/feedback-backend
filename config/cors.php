@@ -21,7 +21,6 @@ return [
 
     'allowed_origins' => [
         'http://localhost:3000',
-        'https://feedback-frontend-silk.vercel.app',
         env('FRONTEND_URL', 'http://localhost:3000'),
     ],
 
