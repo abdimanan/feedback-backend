@@ -37,7 +37,6 @@ Route::middleware('auth:sanctum')->group(function (): void {
         ->name('feedbacks.index');
 
     Route::post('/projects/{project}/send-feedback-email', ProjectFeedbackEmailController::class)
-        ->middleware('role:project_manager')
         ->name('projects.send-feedback-email');
 });
 
