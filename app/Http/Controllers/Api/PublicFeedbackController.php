@@ -42,12 +42,16 @@ class PublicFeedbackController extends Controller
         // Create feedback
         $feedback = Feedback::create([
             'project_id' => $feedbackLink->project_id,
-            'statement_1_rating' => $request->statement_1_rating,
-            'statement_2_rating' => $request->statement_2_rating,
-            'statement_3_rating' => $request->statement_3_rating,
-            'likes_text' => $request->likes_text,
-            'dislikes_text' => $request->dislikes_text,
-            'overall_rating' => $request->overall_rating,
+            'overall_satisfaction' => $request->overall_satisfaction,
+            'timeliness_delivery' => $request->timeliness_delivery,
+            'communication_coordination' => $request->communication_coordination,
+            'quality_final_outputs' => $request->quality_final_outputs,
+            'professionalism_team' => $request->professionalism_team,
+            'understanding_requirements' => $request->understanding_requirements,
+            'nps_score' => $request->nps_score,
+            'deliverables_met_expectations' => $request->deliverables_met_expectations,
+            'issues_resolved_quickly' => $request->issues_resolved_quickly,
+            'comment' => $request->comment,
             'created_at' => now(),
         ]);
 

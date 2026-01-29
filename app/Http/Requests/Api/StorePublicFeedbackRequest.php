@@ -23,12 +23,16 @@ class StorePublicFeedbackRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'statement_1_rating' => ['required', 'integer', 'min:1', 'max:5'],
-            'statement_2_rating' => ['required', 'integer', 'min:1', 'max:5'],
-            'statement_3_rating' => ['required', 'integer', 'min:1', 'max:5'],
-            'likes_text' => ['nullable', 'string'],
-            'dislikes_text' => ['nullable', 'string'],
-            'overall_rating' => ['required', 'integer', 'min:1', 'max:5'],
+            'overall_satisfaction' => ['nullable', 'integer', 'min:1', 'max:5'],
+            'timeliness_delivery' => ['nullable', 'integer', 'min:1', 'max:5'],
+            'communication_coordination' => ['nullable', 'integer', 'min:1', 'max:5'],
+            'quality_final_outputs' => ['nullable', 'integer', 'min:1', 'max:5'],
+            'professionalism_team' => ['nullable', 'integer', 'min:1', 'max:5'],
+            'understanding_requirements' => ['nullable', 'integer', 'min:1', 'max:5'],
+            'nps_score' => ['nullable', 'integer', 'min:0', 'max:10'],
+            'deliverables_met_expectations' => ['nullable', Rule::in(['yes', 'no'])],
+            'issues_resolved_quickly' => ['nullable', Rule::in(['yes', 'no', 'na'])],
+            'comment' => ['nullable', 'string'],
         ];
     }
 
@@ -40,22 +44,29 @@ class StorePublicFeedbackRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'statement_1_rating.required' => 'Service quality rating is required.',
-            'statement_1_rating.integer' => 'Service quality rating must be a number.',
-            'statement_1_rating.min' => 'Service quality rating must be between 1 and 5.',
-            'statement_1_rating.max' => 'Service quality rating must be between 1 and 5.',
-            'statement_2_rating.required' => 'Communication rating is required.',
-            'statement_2_rating.integer' => 'Communication rating must be a number.',
-            'statement_2_rating.min' => 'Communication rating must be between 1 and 5.',
-            'statement_2_rating.max' => 'Communication rating must be between 1 and 5.',
-            'statement_3_rating.required' => 'Delivery time rating is required.',
-            'statement_3_rating.integer' => 'Delivery time rating must be a number.',
-            'statement_3_rating.min' => 'Delivery time rating must be between 1 and 5.',
-            'statement_3_rating.max' => 'Delivery time rating must be between 1 and 5.',
-            'overall_rating.required' => 'Overall rating is required.',
-            'overall_rating.integer' => 'Overall rating must be a number.',
-            'overall_rating.min' => 'Overall rating must be between 1 and 5.',
-            'overall_rating.max' => 'Overall rating must be between 1 and 5.',
+            'overall_satisfaction.integer' => 'Overall satisfaction must be a number.',
+            'overall_satisfaction.min' => 'Overall satisfaction must be between 1 and 5.',
+            'overall_satisfaction.max' => 'Overall satisfaction must be between 1 and 5.',
+            'timeliness_delivery.integer' => 'Timeliness & delivery rating must be a number.',
+            'timeliness_delivery.min' => 'Timeliness & delivery rating must be between 1 and 5.',
+            'timeliness_delivery.max' => 'Timeliness & delivery rating must be between 1 and 5.',
+            'communication_coordination.integer' => 'Communication & coordination rating must be a number.',
+            'communication_coordination.min' => 'Communication & coordination rating must be between 1 and 5.',
+            'communication_coordination.max' => 'Communication & coordination rating must be between 1 and 5.',
+            'quality_final_outputs.integer' => 'Quality of final outputs rating must be a number.',
+            'quality_final_outputs.min' => 'Quality of final outputs rating must be between 1 and 5.',
+            'quality_final_outputs.max' => 'Quality of final outputs rating must be between 1 and 5.',
+            'professionalism_team.integer' => 'Professionalism of team rating must be a number.',
+            'professionalism_team.min' => 'Professionalism of team rating must be between 1 and 5.',
+            'professionalism_team.max' => 'Professionalism of team rating must be between 1 and 5.',
+            'understanding_requirements.integer' => 'Understanding requirements rating must be a number.',
+            'understanding_requirements.min' => 'Understanding requirements rating must be between 1 and 5.',
+            'understanding_requirements.max' => 'Understanding requirements rating must be between 1 and 5.',
+            'nps_score.integer' => 'NPS score must be a number.',
+            'nps_score.min' => 'NPS score must be between 0 and 10.',
+            'nps_score.max' => 'NPS score must be between 0 and 10.',
+            'deliverables_met_expectations.in' => 'Deliverables met expectations must be either yes or no.',
+            'issues_resolved_quickly.in' => 'Issues resolved quickly must be either yes, no, or na.',
         ];
     }
 }

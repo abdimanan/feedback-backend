@@ -38,12 +38,16 @@ class Feedback extends Model
      */
     protected $fillable = [
         'project_id',
-        'statement_1_rating',
-        'statement_2_rating',
-        'statement_3_rating',
-        'likes_text',
-        'dislikes_text',
-        'overall_rating',
+        'overall_satisfaction',
+        'timeliness_delivery',
+        'communication_coordination',
+        'quality_final_outputs',
+        'professionalism_team',
+        'understanding_requirements',
+        'nps_score',
+        'deliverables_met_expectations',
+        'issues_resolved_quickly',
+        'comment',
     ];
 
     /**
@@ -54,10 +58,13 @@ class Feedback extends Model
     protected function casts(): array
     {
         return [
-            'statement_1_rating' => 'integer',
-            'statement_2_rating' => 'integer',
-            'statement_3_rating' => 'integer',
-            'overall_rating' => 'integer',
+            'overall_satisfaction' => 'integer',
+            'timeliness_delivery' => 'integer',
+            'communication_coordination' => 'integer',
+            'quality_final_outputs' => 'integer',
+            'professionalism_team' => 'integer',
+            'understanding_requirements' => 'integer',
+            'nps_score' => 'integer',
             'created_at' => 'datetime',
         ];
     }

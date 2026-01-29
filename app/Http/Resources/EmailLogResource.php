@@ -30,6 +30,7 @@ class EmailLogResource extends JsonResource
 
         if ($this->relationLoaded('feedbackLink')) {
             $data['feedback_url'] = config('app.frontend_url')."/feedback/{$this->feedbackLink->token}";
+            $data['api_endpoint'] = config('app.url')."/api/public/feedback/{$this->feedbackLink->token}";
         }
 
         return $data;

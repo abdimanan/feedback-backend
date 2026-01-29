@@ -19,6 +19,7 @@ class FeedbackLinkResource extends JsonResource
             'project_id' => $this->project_id,
             'token' => $this->token,
             'feedback_url' => config('app.frontend_url')."/feedback/{$this->token}",
+            'api_endpoint' => config('app.url')."/api/public/feedback/{$this->token}",
             'expires_at' => $this->expires_at,
             'used_at' => $this->used_at,
             'created_at' => $this->created_at,

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
+            $table->string('contact_person')->nullable(); // Contact Person (optional)
             $table->text('description')->nullable();
             $table->timestamps();
         });

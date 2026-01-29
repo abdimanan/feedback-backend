@@ -327,7 +327,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Acme Corporation\",\n    \"email\": \"contact@acme.com\",\n    \"description\": \"A leading technology company\"\n}",
+							"raw": "{\n    \"name\": \"Acme Corporation\",\n    \"email\": \"contact@acme.com\",\n    \"contact_person\": \"John Smith\",\n    \"description\": \"A leading technology company\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -371,7 +371,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Acme Corporation Updated\",\n    \"email\": \"contact@acme.com\",\n    \"description\": \"Updated description\"\n}",
+							"raw": "{\n    \"name\": \"Acme Corporation Updated\",\n    \"email\": \"contact@acme.com\",\n    \"contact_person\": \"John Smith\",\n    \"description\": \"Updated description\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -416,7 +416,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Acme Corporation Updated\"\n}",
+							"raw": "{\n    \"name\": \"Acme Corporation Updated\",\n    \"contact_person\": \"Jane Doe\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -898,7 +898,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"statement_1_rating\": 5,\n    \"statement_2_rating\": 4,\n    \"statement_3_rating\": 5,\n    \"likes_text\": \"Great service and communication!\",\n    \"dislikes_text\": null,\n    \"overall_rating\": 5\n}",
+							"raw": "{\n    \"overall_satisfaction\": 5,\n    \"timeliness_delivery\": 4,\n    \"communication_coordination\": 5,\n    \"quality_final_outputs\": 5,\n    \"professionalism_team\": 5,\n    \"understanding_requirements\": 4,\n    \"nps_score\": 9,\n    \"deliverables_met_expectations\": \"yes\",\n    \"issues_resolved_quickly\": \"yes\",\n    \"comment\": \"Excellent work! The team was professional and delivered quality results on time.\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -917,7 +917,7 @@
 								"muqpJQV7OoiYsr0RAxguzlYAwJEyo3TRn8VCEZqHfyZeiTArme2zWOZmLEQUOTny"
 							]
 						},
-						"description": "Submit feedback using a feedback link token. No authentication required. The token must be valid, not expired, and not already used. All ratings must be between 1-5."
+						"description": "Submit feedback using a feedback link token. No authentication required. The token must be valid, not expired, and not already used. Service ratings are 1-5 scale, NPS score is 0-10 scale. All fields are optional (nullable)."
 					},
 					"response": []
 				},

@@ -12,8 +12,9 @@ class ClientFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->company() . ' ' . $this->faker->lastName(),
+            'name' => $this->faker->company().' '.$this->faker->lastName(),
             'email' => $this->faker->unique()->companyEmail(),
+            'contact_person' => $this->faker->optional()->name(),
             'description' => $this->faker->optional()->sentence(10),
             'created_at' => now(),
             'updated_at' => now(),
