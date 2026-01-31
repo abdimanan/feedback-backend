@@ -78,3 +78,7 @@ Route::post('/public/feedback/{token}', [PublicFeedbackController::class, 'store
 // Public email open tracking (1x1 pixel)
 Route::get('/public/email-open/{emailLog}', [EmailOpenTrackingController::class, 'track'])
     ->name('public.email.open');
+
+// Public project view (no authentication required)
+Route::get('/public/projects/{project}', [ProjectController::class, 'show'])
+    ->name('public.projects.show');

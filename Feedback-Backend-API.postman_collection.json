@@ -941,6 +941,33 @@
 						"description": "Track email opens via a 1x1 transparent GIF pixel. No authentication required. This endpoint is automatically called when the email is opened (embedded in the email HTML). Sets opened_at timestamp on first open. Returns a transparent GIF image."
 					},
 					"response": []
+				},
+				{
+					"name": "Get Project Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/public/projects/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"public",
+								"projects",
+								"1"
+							]
+						},
+						"description": "Get project information including client details. No authentication required. This allows clients to view project information when providing feedback."
+					},
+					"response": []
 				}
 			],
 			"description": "Public endpoints (no authentication required)"
