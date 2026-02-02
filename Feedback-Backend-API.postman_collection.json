@@ -881,6 +881,33 @@
 			"name": "Public",
 			"item": [
 				{
+					"name": "Get Feedback Link Info",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/public/feedback-link/muqpJQV7OoiYsr0RAxguzlYAwJEyo3TRn8VCEZqHfyZeiTArme2zWOZmLEQUOTny",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"public",
+								"feedback-link",
+								"muqpJQV7OoiYsr0RAxguzlYAwJEyo3TRn8VCEZqHfyZeiTArme2zWOZmLEQUOTny"
+							]
+						},
+						"description": "Get client and project information using a feedback link token. No authentication required. Returns client name, project name, contact person, and service date. Used by frontend to display Section A information on the feedback form."
+					},
+					"response": []
+				},
+				{
 					"name": "Submit Feedback",
 					"request": {
 						"method": "POST",
@@ -917,7 +944,7 @@
 								"muqpJQV7OoiYsr0RAxguzlYAwJEyo3TRn8VCEZqHfyZeiTArme2zWOZmLEQUOTny"
 							]
 						},
-						"description": "Submit feedback using a feedback link token. No authentication required. The token must be valid, not expired, and not already used. Service ratings are 1-5 scale, NPS score is 0-10 scale. All fields are optional (nullable)."
+						"description": "Submit feedback using a feedback link token. No authentication required. The token must be valid, not expired, and not already used. Service ratings are 1-5 scale (required), NPS score is 0-10 scale (required). Yes/No fields accept 'yes', 'no', or 'n/a'. Comment is optional. All other fields are required."
 					},
 					"response": []
 				},

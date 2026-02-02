@@ -12,6 +12,46 @@ use Illuminate\Http\Response;
 class PublicFeedbackController extends Controller
 {
     /**
+     * Get client and project information from feedback link token.
+     */
+    public function show(string $token): JsonResponse
+    {
+        // Find the feedback link by token
+        $feedbackLink = FeedbackLink::where('token', $token)
+            ->with(['project.client'])
+            ->first();
+
+        if (! $feedbackLink) {
+            return response()->json([
+                'message' => 'Invalid feedback link token.',
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        // Check if link is expired
+        if ($feedbackLink->expires_at->isPast()) {
+            return response()->json([
+                'message' => 'This feedback link has expired.',
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        // Check if link is already used
+        if ($feedbackLink->used_at !== null) {
+            return response()->json([
+                'message' => 'This feedback link has already been used.',
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        return response()->json([
+            'data' => [
+                'client_name' => $feedbackLink->project->client->name,
+                'project_name' => $feedbackLink->project->name,
+                'contact_person' => $feedbackLink->project->client->contact_person,
+                'service_date' => $feedbackLink->project->start_date,
+            ],
+        ]);
+    }
+
+    /**
      * Store feedback using a feedback link token.
      */
     public function store(StorePublicFeedbackRequest $request, string $token): JsonResponse

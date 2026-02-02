@@ -23,15 +23,15 @@ class StorePublicFeedbackRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'overall_satisfaction' => ['nullable', 'integer', 'min:1', 'max:5'],
-            'timeliness_delivery' => ['nullable', 'integer', 'min:1', 'max:5'],
-            'communication_coordination' => ['nullable', 'integer', 'min:1', 'max:5'],
-            'quality_final_outputs' => ['nullable', 'integer', 'min:1', 'max:5'],
-            'professionalism_team' => ['nullable', 'integer', 'min:1', 'max:5'],
-            'understanding_requirements' => ['nullable', 'integer', 'min:1', 'max:5'],
-            'nps_score' => ['nullable', 'integer', 'min:0', 'max:10'],
-            'deliverables_met_expectations' => ['nullable', Rule::in(['yes', 'no'])],
-            'issues_resolved_quickly' => ['nullable', Rule::in(['yes', 'no', 'na'])],
+            'overall_satisfaction' => ['required', 'integer', 'min:1', 'max:5'],
+            'timeliness_delivery' => ['required', 'integer', 'min:1', 'max:5'],
+            'communication_coordination' => ['required', 'integer', 'min:1', 'max:5'],
+            'quality_final_outputs' => ['required', 'integer', 'min:1', 'max:5'],
+            'professionalism_team' => ['required', 'integer', 'min:1', 'max:5'],
+            'understanding_requirements' => ['required', 'integer', 'min:1', 'max:5'],
+            'nps_score' => ['required', 'integer', 'min:0', 'max:10'],
+            'deliverables_met_expectations' => ['required', Rule::in(['yes', 'no'])],
+            'issues_resolved_quickly' => ['required', Rule::in(['yes', 'no', 'n/a'])],
             'comment' => ['nullable', 'string'],
         ];
     }
@@ -66,7 +66,7 @@ class StorePublicFeedbackRequest extends FormRequest
             'nps_score.min' => 'NPS score must be between 0 and 10.',
             'nps_score.max' => 'NPS score must be between 0 and 10.',
             'deliverables_met_expectations.in' => 'Deliverables met expectations must be either yes or no.',
-            'issues_resolved_quickly.in' => 'Issues resolved quickly must be either yes, no, or na.',
+            'issues_resolved_quickly.in' => 'Issues resolved quickly must be either yes, no, or n/a.',
         ];
     }
 }

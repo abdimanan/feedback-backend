@@ -71,6 +71,10 @@ Route::middleware('auth:sanctum')->group(function (): void {
         ->name('projects.send-feedback-email');
 });
 
+// Public feedback link info (no authentication required)
+Route::get('/public/feedback-link/{token}', [PublicFeedbackController::class, 'show'])
+    ->name('public.feedback-link.show');
+
 // Public feedback submission (no authentication required)
 Route::post('/public/feedback/{token}', [PublicFeedbackController::class, 'store'])
     ->name('public.feedback.store');
